@@ -1,4 +1,4 @@
-import 'package:pokedex/views/homepage.dart';
+import 'package:pokedex/views/listPoke.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,6 +6,6 @@ void main() {
     theme: ThemeData(
       primarySwatch: Colors.red,
     ),
-    home: const MyHomePage(title: "Pokedex"),
+    home: const HomePage(title: "Pokedex"),
   ));
 }
