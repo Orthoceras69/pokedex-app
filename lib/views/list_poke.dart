@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
+  TextEditingController searchPokemon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +29,12 @@ class _MyHomePageState extends State<HomePage> {
             return const Center(child: Text("Loading..."));
           } else if (snapshot.connectionState == ConnectionState.done) {
             return ListView.builder(
-                itemCount: 898,
+                itemCount: snapshot.data!.length,
                 itemBuilder: (context, i) {
                   return ListTile(
-                    leading: Image.network(snapshot.data![i].sprite),
+                    //leading: Image.network(snapshot.data![i].sprite),
                     title: Text(snapshot.data![i].name),
-                    trailing: Text("ID N°" + snapshot.data![i].id),
+                    //trailing: Text("N°" + snapshot.data![i].id),
                   );
                 });
           } else {
