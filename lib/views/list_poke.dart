@@ -32,9 +32,9 @@ class _MyHomePageState extends State<HomePage> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, i) {
                   return ListTile(
-                    //leading: Image.network(snapshot.data![i].sprite),
+                    leading: Image.network(snapshot.data![i].sprite),
                     title: Text(snapshot.data![i].name),
-                    //trailing: Text("N°" + snapshot.data![i].id),
+                    trailing: Text("N°" + snapshot.data![i].id),
                   );
                 });
           } else {

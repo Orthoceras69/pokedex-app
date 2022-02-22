@@ -5,20 +5,27 @@ import 'package:http/http.dart' as http;
 Future<List<UrlPokemon>> getUrlPokemonData() async {
   List<UrlPokemon> urlPokemonList = [];
 
-  var queryParameter = {'offset': '0', 'limit': '2000'};
+  var queryParameter = {'offset': '0', 'limit': '898'};
+  int id = 1;
 
   var url = Uri.https("pokeapi.co", '/api/v2/pokemon', queryParameter);
-  print(url);
   var response = await http.get(url);
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
     for (var data in jsonResponse["results"]) {
-      UrlPokemon urlPokemon = UrlPokemon(data["name"], data["url"]);
+      if (id == 899) {
+        id = 10001;
+      }
+      UrlPokemon urlPokemon = UrlPokemon(
+          data["name"].toString(),
+          data["url"].toString(),
+          id.toString(),
+          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
+              id.toString() +
+              ".png");
       urlPokemonList.add(urlPokemon);
+      id = id + 1;
     }
-    //UrlPokemon urlPokemon =
-    //    UrlPokemon(jsonResponse["name"], jsonResponse["url"]);
-    //urlPokemonList.add(urlPokemon);
   } else {
     print('Request failed : ${response.statusCode}');
   }

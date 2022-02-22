@@ -1,4 +1,4 @@
 class UrlPokemon {
-  final String name, url;
-  UrlPokemon(this.name, this.url);
+  final String name, url, id, sprite;
+  UrlPokemon(this.name, this.url, this.id, this.sprite);
 }
