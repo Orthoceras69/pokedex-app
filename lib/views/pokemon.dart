@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../models/data_pokemon.dart';
+import '../services/data_pokemon_service.dart';
+
 class Pokemon extends StatelessWidget {
   const Pokemon({Key? key, required this.idPokemon, required this.name})
       : super(key: key);
@@ -38,7 +41,18 @@ class _PokemonState extends State<PokemonSF> {
       appBar: AppBar(
         title: Text(widget.name),
       ),
-      body: const Text("Test"),
+      body: FutureBuilder<DataPokemon>(
+        future: getDataPokemon(widget.idPokemon),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: Text("Loading..."));
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            return Text(snapshot.data!.name);
+          } else {
+            return const Text("An error occured.");
+          }
+        },
+      ),
     );
   }
 }

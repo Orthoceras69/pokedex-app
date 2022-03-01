@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DataPokemon {
-  final List abilities, types, description;
+  final List abilities, types, description, stats, gender;
   final String name,
       id,
       spriteNormalFront,
@@ -10,15 +10,8 @@ class DataPokemon {
       spriteShinyBack,
       height,
       weight,
-      statHP,
-      statAttack,
-      statDefense,
-      statAttackSpe,
-      statDefenseSpe,
-      statSpeed,
       baseExperience,
       baseHappiness,
-      gender,
       generation,
       habitat;
   DataPokemon(
@@ -30,12 +23,7 @@ class DataPokemon {
       this.spriteShinyBack,
       this.height,
       this.weight,
-      this.statHP,
-      this.statAttack,
-      this.statDefense,
-      this.statAttackSpe,
-      this.statDefenseSpe,
-      this.statSpeed,
+      this.stats,
       this.baseExperience,
       this.baseHappiness,
       this.gender,

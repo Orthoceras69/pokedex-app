@@ -9,7 +9,7 @@ Future<DataPokemon> getDataPokemon(String id) async {
     var jsonResponsePoke = jsonDecode(responsePoke.body);
 
     var urlSpecies = Uri.https(
-        "pokeapi.co", (jsonResponsePoke["species"]["url"]).substring(17));
+        "pokeapi.co", (jsonResponsePoke["species"]["url"]).substring(18));
     var responseSpecies = await http.get(urlSpecies);
     if (responseSpecies.statusCode == 200) {
       var jsonResponseSpecies = jsonDecode(responseSpecies.body);
@@ -24,10 +24,20 @@ Future<DataPokemon> getDataPokemon(String id) async {
         String ability = data["ability"]["name"];
         pokemonAbilities.add(ability);
       }
-      List<String> pokemonDescription = [];
+      List<String> pokemonDescriptions = [];
       for (var data in jsonResponseSpecies["flavor_text_entries"]) {
         String description = data["flavor_text"];
-        pokemonDescription.add(description);
+        pokemonDescriptions.add(description);
+      }
+      List<String> pokemonStats = [];
+      for (var data in jsonResponsePoke["stats"]) {
+        String stat = data["base_stat"].toString();
+        pokemonStats.add(stat);
+      }
+      List<String> pokemonGenera = [];
+      for (var data in jsonResponseSpecies["genera"]) {
+        String genus = data["genus"].toString();
+        pokemonGenera.add(genus);
       }
 
       return DataPokemon(
@@ -39,20 +49,15 @@ Future<DataPokemon> getDataPokemon(String id) async {
           jsonResponsePoke["sprites"]["back_shiny"],
           jsonResponsePoke["height"].toString(),
           jsonResponsePoke["weight"].toString(),
-          jsonResponsePoke["O"]["base_stat"].toString(),
-          jsonResponsePoke["1"]["base_stat"].toString(),
-          jsonResponsePoke["2"]["base_stat"].toString(),
-          jsonResponsePoke["3"]["base_stat"].toString(),
-          jsonResponsePoke["4"]["base_stat"].toString(),
-          jsonResponsePoke["5"]["base_stat"].toString(),
+          pokemonStats,
           jsonResponsePoke["base_experience"].toString(),
           jsonResponseSpecies["base_happiness"].toString(),
-          jsonResponseSpecies["7"]["genus"],
+          pokemonGenera,
           jsonResponseSpecies["generation"]["name"],
           jsonResponseSpecies["habitat"]["name"],
           pokemonTypes,
           pokemonAbilities,
-          pokemonDescription);
+          pokemonDescriptions);
     } else {
       print('Request Species failed : ${responseSpecies.statusCode}');
     }
@@ -68,15 +73,10 @@ Future<DataPokemon> getDataPokemon(String id) async {
       "Error",
       "Error",
       "Error",
+      ["Error"],
       "Error",
       "Error",
-      "Error",
-      "Error",
-      "Error",
-      "Error",
-      "Error",
-      "Error",
-      "Error",
+      ["Error"],
       "Error",
       "Error",
       ["Error"],
