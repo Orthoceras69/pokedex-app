@@ -17,7 +17,8 @@ Future<List<UrlPokemon>> getUrlPokemonData() async {
         id = 10001;
       }
       UrlPokemon urlPokemon = UrlPokemon(
-          data["name"].toString(),
+          ((data["name"].toString()).substring(0, 1)).toUpperCase() +
+              (data["name"].toString()).substring(1),
           data["url"].toString(),
           id.toString(),
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +

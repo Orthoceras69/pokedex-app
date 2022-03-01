@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/services/url_pokemon_service.dart';
 import 'package:pokedex/models/url_pokemon.dart';
+import '../widgets/button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -34,7 +33,12 @@ class _MyHomePageState extends State<HomePage> {
                   return ListTile(
                     leading: Image.network(snapshot.data![i].sprite),
                     title: Text(snapshot.data![i].name),
-                    trailing: Text("N°" + snapshot.data![i].id),
+                    subtitle: Text("n°" +
+                        ("000" + snapshot.data![i].id).substring(
+                            (snapshot.data![i].id).length,
+                            (snapshot.data![i].id).length + 3)),
+                    trailing: myTodoButton(
+                        context, snapshot.data![i].id, snapshot.data![i].name),
                   );
                 });
           } else {
