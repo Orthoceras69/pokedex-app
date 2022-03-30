@@ -19,6 +19,8 @@ Future<DataPokemon> getDataPokemon(String id) async {
         String type = data["type"]["name"];
         pokemonTypes.add(type);
       }
+      String type = "";
+      pokemonTypes.add(type);
       List<String> pokemonAbilities = [];
       for (var data in jsonResponsePoke["abilities"]) {
         String ability = data["ability"]["name"];
@@ -41,7 +43,9 @@ Future<DataPokemon> getDataPokemon(String id) async {
       }
 
       return DataPokemon(
-          jsonResponsePoke["name"],
+          ((jsonResponsePoke["name"].toString()).substring(0, 1))
+                  .toUpperCase() +
+              (jsonResponsePoke["name"].toString()).substring(1),
           jsonResponsePoke["id"].toString(),
           jsonResponsePoke["sprites"]["front_default"],
           jsonResponsePoke["sprites"]["back_default"],

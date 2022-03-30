@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/services/url_pokemon_service.dart';
-import 'package:pokedex/models/url_pokemon.dart';
 import '../widgets/button.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _MyHomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: FutureBuilder<List<UrlPokemon>>(
+      body: FutureBuilder<List>(
         future: getUrlPokemonData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

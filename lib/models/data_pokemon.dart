@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class DataPokemon {
   final List abilities, types, description, stats, gender;
   final String name,
